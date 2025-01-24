@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController
 {
     public bool IsInteracted;
@@ -29,6 +30,10 @@ public class PlayerController
         LightSwitchView.lightSwitch += LightSwitchToggled;
 
         playerState = PlayerState.InDark;
+    }
+    ~PlayerController()
+    {
+        LightSwitchView.lightSwitch -= LightSwitchToggled;
     }
 
     public void Interact() => IsInteracted = Input.GetKeyDown(KeyCode.E) ? true : (Input.GetKeyUp(KeyCode.E) ? false : IsInteracted);
